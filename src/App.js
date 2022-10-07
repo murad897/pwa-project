@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Header from "./components/Header";
+import Container from "@mui/material/Container";
+import { Box } from "@mui/material";
+import { Grid } from "@mui/material";
+import MessageContainer from "./components/MessageContainer";
+import Users from "./components/Users";
+import { UserContextPorvider } from "./context/UsersContext";
+import { makeStyles } from "@mui/styles";
 
-function App() {
+const App = () => {
+  const useStyles = makeStyles({
+    container: {
+      marginTop: "50px",
+    },
+  });
+
+  const styles = useStyles();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContextPorvider>
+      <Container maxWidth="lg">
+        <Header />
+        <Box className={styles.container}>
+          <Grid container spacing={2}>
+            <Grid item xs={6} md={4}>
+              <Users />
+            </Grid>
+            <Grid item xs={6} md={8}>
+              <MessageContainer />
+            </Grid>
+          </Grid>
+        </Box>
+      </Container>
+    </UserContextPorvider>
   );
-}
+};
 
 export default App;
