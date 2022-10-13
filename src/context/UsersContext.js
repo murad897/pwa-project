@@ -15,6 +15,8 @@ export const UserContextPorvider = ({ children }) => {
     "gdfgdfgd",
   ]);
 
+  const [user, setUser] = useState(null);
+
   const [searchText, setSearchText] = useState("");
   const [filteredUsers, setFilteredUsers] = useState([]);
 
@@ -26,10 +28,11 @@ export const UserContextPorvider = ({ children }) => {
     setSearchText(value);
   };
 
-  console.log(users);
 
   return (
-    <UsersContext.Provider value={{ users, filterUsers, filteredUsers, searchText }}>
+    <UsersContext.Provider
+      value={{ users, filterUsers, filteredUsers, searchText, user }}
+    >
       {children}
     </UsersContext.Provider>
   );
